@@ -7,8 +7,14 @@ function Form() {
     return (
         // html markup can go into the parenthesis
         <form>
-            <input type="text"></input>
-            <input type="text"></input>
+            <div>
+            <label htmlFor="titleInput">Title: </label>
+            <input id="titleInput" type="text"></input>
+            </div>
+            <div>
+            <label htmlFor="descriptionInput">Description: </label>
+            <input id="descriptionInput"type="text"></input>
+            </div>
         </form>
     );
 }
