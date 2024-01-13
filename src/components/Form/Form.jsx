@@ -14,6 +14,7 @@ function Form() {
             <div>
             <label htmlFor="descriptionInput">Description: </label>
             <input id="descriptionInput"type="text"></input>
+            <button>Submit</button>
             </div>
         </form>
     );
