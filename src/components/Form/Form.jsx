@@ -8,13 +8,8 @@ function Form() {
         // html markup can go into the parenthesis
         <form>
             <div>
-            <label htmlFor="titleInput">Title: </label>
-            <input id="titleInput" type="text"></input>
-            </div>
-            <div>
-            <label htmlFor="descriptionInput">Description: </label>
-            <input id="descriptionInput"type="text"></input>
-            <button>Submit</button>
+            <label htmlFor="taskInput">Title: </label>
+            <input id="taskInput" type="text"></input>
             </div>
         </form>
     );

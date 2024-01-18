@@ -6,10 +6,14 @@ import { fetchToDoItems } from '../../toDoApp/ToDoApp.api.js';
 
 // a function represents a component!
 function App () {
+  // completed to do list
   const [toDoList, setToDoList] = useState([
-    {title: "Go to sleep early!", description: "Go to sleep at 9PM"},
-    {title: "Finish to-do App!", description: "Due next week!"}
+    {title: "Go to sleep early!"},
+    {title: "Finish to-do App!"}
   ]);
+
+  // Adding a new item to the list
+  const [toDoItemValue, setToDoItemValue] = useState([]);
 
   {/* useEffect is used for initial load */}
   useEffect(() => {
@@ -25,7 +29,7 @@ function App () {
         setToDoList(response.data);
       })
       .catch((error) => {
-      console.log('ERROR IN GET: ', error);
+      console.log('ERROR IN AXIOS GET: ', error);
       });
   }, []);
 
@@ -34,13 +38,11 @@ function App () {
       <h1>TO DO APP</h1>
       <Form />
 
- 
-      {/* HOW TO RENDER A LIST */}
+      {/* HOW TO RENDER A LIST (TO DO LIST) */}
       {toDoList.map((toDoItem, itemIndex) => {
         return (
           <ul key={itemIndex}>
-            <li kid="toDoItemTitle">{toDoItem.title}</li>
-            <p id="description">{toDoItem.description}</p>
+            <li id="toDoItemTask">{toDoItem.task}</li>
           </ul>
         )
       })};

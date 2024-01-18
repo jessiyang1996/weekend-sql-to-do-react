@@ -25,12 +25,12 @@ router.get('/', (req, res) => { // link - /api/todo
 router.post('/', (req, res) => {
     console.log('req.body:', req.body);
     let queryText = `
-        INSERT INTO "to_do" ("title", "description")
-        Values ($1, $2);
+        INSERT INTO "to_do" ("task")
+        Values ($1);
     `;
 
     // Run SQL query using PG
-    pool.query(queryText, [req.body.title, req.body.description])
+    pool.query(queryText, [req.body.task])
         .then ((result) => {
             // Query was successful!
             res.sendStatus(201);

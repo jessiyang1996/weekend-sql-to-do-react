@@ -7,6 +7,17 @@ export const fetchToDoItems = () => {
         //     console.log('SERVER DATA: ', response);
         // })
         // .catch((error) => {
-        //     console.log('ERROR IN GET: ', error);
+        //     console.log('ERROR IN AXIOS GET: ', error);
         // });
 }; // end of axios GET CALL
+
+export const postToDoItem = () => {
+    // axios POST Request
+    return axios.post('/api/todo')
+        .then((response) => {
+            // success
+        })
+        .catch((error) => {
+            console.log("ERROR IN AXIOS POST: ", error);
+        })
+}
