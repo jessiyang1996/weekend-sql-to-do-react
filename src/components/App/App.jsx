@@ -3,17 +3,14 @@ import {useState, useEffect} from 'react';
 import Form from '../Form/Form.jsx';
 import axios from 'axios'; // import axios in order to use it!
 import { fetchToDoItems } from '../../toDoApp/ToDoApp.api.js';
+import ListView from '../listView/listView.jsx';
 
 // a function represents a component!
 function App () {
-  // completed to do list
   const [toDoList, setToDoList] = useState([
     {title: "Go to sleep early!"},
     {title: "Finish to-do App!"}
   ]);
-
-  // Adding a new item to the list
-  const [toDoItemValue, setToDoItemValue] = useState([]);
 
   {/* useEffect is used for initial load */}
   useEffect(() => {
@@ -24,9 +21,9 @@ function App () {
     const toDoItemPromise = fetchToDoItems();
     toDoItemPromise
       .then((response) => {
-        
         console.log('SERVER DATA: ', response.data);
         setToDoList(response.data);
+        console.log("New toDoList is: ", toDoList);
       })
       .catch((error) => {
       console.log('ERROR IN AXIOS GET: ', error);
@@ -36,16 +33,10 @@ function App () {
   return (
     <div>
       <h1>TO DO APP</h1>
-      <Form />
+      <Form/>
 
-      {/* HOW TO RENDER A LIST (TO DO LIST) */}
-      {toDoList.map((toDoItem, itemIndex) => {
-        return (
-          <ul key={itemIndex}>
-            <li id="toDoItemTask">{toDoItem.task}</li>
-          </ul>
-        )
-      })};
+      {/* RENDER (Showing) A LIST (TO DO LIST) */}
+      <ListView toDoList={toDoList}/>
     </div>
 )} //end of App function
 

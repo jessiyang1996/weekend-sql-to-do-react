@@ -11,11 +11,13 @@ export const fetchToDoItems = () => {
         // });
 }; // end of axios GET CALL
 
-export const postToDoItem = () => {
+export const postToDoItem = (taskData) => {
     // axios POST Request
-    return axios.post('/api/todo')
+    // taskData = req.body
+    return axios.post('/api/todo', taskData) 
         .then((response) => {
             // success
+            
         })
         .catch((error) => {
             console.log("ERROR IN AXIOS POST: ", error);
