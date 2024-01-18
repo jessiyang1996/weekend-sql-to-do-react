@@ -6,7 +6,7 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => { // link - /api/todo
     console.log("IN GET ROUTE");
     
-    let queryText = 'SELECT * FROM "to-do";';
+    let queryText = 'SELECT * FROM "to_do";';
 
     // Run SQL query using PG
     pool.query(queryText)
