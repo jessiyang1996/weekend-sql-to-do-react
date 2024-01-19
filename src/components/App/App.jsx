@@ -32,10 +32,7 @@ function App () {
 
   return (
     <div>
-      <h1>TO DO APP</h1>
       <Form/>
-
-      {/* RENDER (Showing) A LIST (TO DO LIST) */}
       <ListView toDoList={toDoList}/>
     </div>
 )} //end of App function
