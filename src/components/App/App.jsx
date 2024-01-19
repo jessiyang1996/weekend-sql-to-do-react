@@ -28,11 +28,26 @@ function App () {
       .catch((error) => {
       console.log('ERROR IN AXIOS GET: ', error);
       });
-  }, []);
+    }, []); // end of useEffect
+  
+  const refreshToDoList = () => {
+    const toDoItemPromise = fetchToDoItems();
+    toDoItemPromise
+      .then((response) => {
+        console.log('SERVER DATA: ', response.data);
+        setToDoList(response.data);
+        console.log("New toDoList is: ", toDoList);
+      })
+      .catch((error) => {
+      console.log('ERROR IN AXIOS GET: ', error);
+      });
+  } // end of refreshToDoList
 
   return (
     <div>
-      <Form/>
+      <Form refreshToDoList={refreshToDoList}/>
+
+            {/* we need toDoList for the loop (.map) */}
       <ListView toDoList={toDoList}/>
     </div>
 )} //end of App function

@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import axios from 'axios'; // necessary for our post route!
 // this is the Form Component!
 // It will be used to create the form for the client to enter their data
 // and interact with the website.
 
+// Imports:
+import { useState } from 'react';
+import axios from 'axios'; // necessary for our post route!
+
 // Your component should ALWAYS start with a CAPITAL letter!
-function Form() {
+function Form(props) {
     // Adding a new item to the list
     const [toDoItemValue, setToDoItemValue] = useState('');
 
@@ -23,6 +25,8 @@ function Form() {
             console.log("Data sent to data: ", response.data)
             // clear form after submit
             setToDoItemValue('');
+            // fetch new data
+            props.refreshToDoList();
         }).catch((error) => {
             console.log("axios error:", error);
             alert("There is an error in the axios.POST!")
@@ -38,7 +42,7 @@ function Form() {
                 <label htmlFor="taskInput">Title: </label>
                 <input id="taskInput" type="text" value={toDoItemValue} 
                 onChange={(e) => setToDoItemValue(e.target.value)}></input>
-                <p>{toDoItemValue}</p> {/*Test to make sure toDoItemValue is what we are typing*/}
+                {/* <p>{toDoItemValue}</p> Test to make sure toDoItemValue is what we are typing */}
                 <button type="submit">Submit</button>
                 </div>
             </form>
