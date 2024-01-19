@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios'; // necessary for our post route!
 // this is the Form Component!
 // It will be used to create the form for the client to enter their data
 // and interact with the website.
@@ -6,11 +7,26 @@ import { useState } from 'react';
 // Your component should ALWAYS start with a CAPITAL letter!
 function Form() {
     // Adding a new item to the list
-    const [toDoItemValue, setToDoItemValue] = useState([]);
+    const [toDoItemValue, setToDoItemValue] = useState('');
 
     // function to send task to server
     const sendTaskToServer = (event) => {
-        console.log("hi hi");
+        event.preventDefault(); // prevents the page from refreshing.
+        console.log("hi hi from submit button");
+        console.log("Task to send to server: ", toDoItemValue);
+
+        // axios call!
+        axios.post('/api/todo', {
+            task: toDoItemValue
+        }).then((response) => {
+            // success!
+            console.log("Data sent to data: ", response.data)
+            // clear form after submit
+            setToDoItemValue('');
+        }).catch((error) => {
+            console.log("axios error:", error);
+            alert("There is an error in the axios.POST!")
+        })
     } 
 
     return (
@@ -20,7 +36,9 @@ function Form() {
             <form onSubmit={sendTaskToServer}>
                 <div>
                 <label htmlFor="taskInput">Title: </label>
-                <input id="taskInput" type="text" onChange={(event) => setToDoItemValue}></input>
+                <input id="taskInput" type="text" value={toDoItemValue} 
+                onChange={(e) => setToDoItemValue(e.target.value)}></input>
+                <p>{toDoItemValue}</p> {/*Test to make sure toDoItemValue is what we are typing*/}
                 <button type="submit">Submit</button>
                 </div>
             </form>
