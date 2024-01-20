@@ -41,7 +41,7 @@ function App () {
       <Form refreshToDoList={refreshToDoList}/>
 
             {/* we need toDoList for the loop (.map) */}
-      <ListView toDoList={toDoList}/>
+      <ListView toDoList={toDoList} refreshToDoList={refreshToDoList}/>
 
     </div>
 )} //end of App function

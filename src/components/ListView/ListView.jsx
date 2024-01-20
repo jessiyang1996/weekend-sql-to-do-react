@@ -1,9 +1,10 @@
-import { fetchToDoItems } from '../../toDoApp/ToDoApp.api.js';
+import { fetchToDoItems } from '../../toDoApp/ToDoApp.api.js'
 import { useEffect } from 'react';
 import { deleteToDoItem } from '../../toDoApp/ToDoApp.api.js'
 
+
               // We need toDoList from App.jsx for our .map
-function ListView(toDoList) {
+function ListView({toDoList, refreshToDoList}) {
   // Delete item function
   const handleClickDelete = (toDoItemId) => {
     // confirm delete button works
@@ -16,7 +17,7 @@ function ListView(toDoList) {
       .then((response) => {
         // Success
         // refresh items on page
-        fetchToDoItems();
+        refreshToDoList();
       })
       .catch((error) => {
         console.log("Error in AXIOS Delete: ", error)
@@ -25,7 +26,7 @@ function ListView(toDoList) {
 
     return (
         <div>
-            {toDoList.toDoList.map((toDoItem, itemIndex) => {
+            {toDoList.map((toDoItem, itemIndex) => {
                 return (
                 <ul key={itemIndex}>
                         <li id="toDoItemTask">{toDoItem.task}</li>
