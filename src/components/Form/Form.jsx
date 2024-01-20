@@ -40,7 +40,7 @@ function Form(props) {
             <form onSubmit={sendTaskToServer}>
                 <div>
                 <label htmlFor="taskInput">Title: </label>
-                <input id="taskInput" type="text" value={toDoItemValue} 
+                <input id="taskInput" type="text" value={toDoItemValue}
                 onChange={(e) => setToDoItemValue(e.target.value)}></input>
                 {/* <p>{toDoItemValue}</p> Test to make sure toDoItemValue is what we are typing */}
                 <button type="submit">Submit</button>
