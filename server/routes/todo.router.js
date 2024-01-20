@@ -17,7 +17,7 @@ router.get('/', (req, res) => { // link - /api/todo
         .catch((error) => {
             // send back error
             console.log("Error in router GET route", error);
-            res.sendStatus(500);
+            res.sendStatus(500); // close connection
         });
 });
 
@@ -33,11 +33,11 @@ router.post('/', (req, res) => {
     pool.query(queryText, [req.body.task])
         .then ((result) => {
             // Query was successful!
-            res.sendStatus(201);
+            res.sendStatus(201); // close connection
         })
         .catch((error) => {
             console.log("Error in Router POST Route: ", error);
-            res.sendStatus(500);
+            res.sendStatus(500); // close connection
         });
 });
 
@@ -51,26 +51,27 @@ router.put('/:id', (req, res) => {
     pool.query(queryText, [req.body.completed, req.body.id])
         .then((result) => {
             // Send back data from our database upon success
-            res.sendStatus(200);
+            res.sendStatus(200); // close connection
         })
         .catch((error) => {
             console.log("Error in POST Route: ", error);
-            res.sendStatus(500);
+            res.sendStatus(500); // close connection
         });
 });
 
 // DELETE -- Delete an item
 router.delete('/:id', (req,res) => {
     console.log('req.params: ', req.params);
+    const taskItem= req.params
     let queryText = `Delete FROM "to_do" WHERE "id"= $1;`;
     // Run SQL Query using PG
-    pool.query(queryText, [req.params.id])
-        .then((result) => {
-            res.sendStatus(200);
+    pool.query(queryText, [taskItem.id])
+        .then((response) => {
+            res.sendStatus(200); // close connection
         })
         .catch((error) => {
-            console.log('Error in DELETE: ', error);
-            res.sendStatus(500);
+            console.error('Error in DELETE: ', error);
+            res.sendStatus(500); // close connection
         });
 });
 

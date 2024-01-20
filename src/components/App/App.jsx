@@ -12,6 +12,7 @@ function App () {
     {title: "Finish to-do App!"}
   ]);
 
+  // GET Route
   const refreshToDoList = () => {
     const toDoItemPromise = fetchToDoItems();
     toDoItemPromise
@@ -25,7 +26,8 @@ function App () {
       });
   } // end of refreshToDoList
 
-  {/* useEffect is used for initial load */}
+  // useEffect is used for initial load - where our refresh is being called
+  // only runs once - on initial page load!
   useEffect(() => {
     // body of effect
     console.log("hi hi");
@@ -40,6 +42,7 @@ function App () {
 
             {/* we need toDoList for the loop (.map) */}
       <ListView toDoList={toDoList}/>
+
     </div>
 )} //end of App function
 

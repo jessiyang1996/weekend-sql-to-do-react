@@ -9,17 +9,14 @@ export const fetchToDoItems = () => {
         // .catch((error) => {
         //     console.log('ERROR IN AXIOS GET: ', error);
         // });
-}; // end of axios GET CALL
+}; // end of axios GET call
 
-export const postToDoItem = (taskData) => {
-    // axios POST Request
-    // taskData = req.body
-    return axios.post('/api/todo', taskData) 
-        .then((response) => {
-            // success
-            
-        })
-        .catch((error) => {
-            console.log("ERROR IN AXIOS POST: ", error);
-        })
-}
+// PUT (UPDATE) Axios Call
+// export const markAsCompleted = () => {
+
+// }
+
+// Delete Axios Call
+export const deleteToDoItem = (toDoItemId) => {
+    return axios.delete(`/api/todo/${toDoItemId}`);
+}; // End of axios DELETE Call
