@@ -41,24 +41,27 @@ function ListView({toDoList, refreshToDoList}) {
         <div>
             {toDoList.map((toDoItem, itemIndex) => (
                 <ul key={itemIndex} id="toDoList">
-                        {
-                        toDoItem.completed ?(
-                        <>
+                        {toDoItem.completed ?(
+                        <div id="taskCompletedDiv">
                         {/* Task is completed */}
                         <li id="toDoItemTask" className="crossedThrough">{toDoItem.task}</li>
                         {/* <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p> */}
                         <Button type="button" id="completed" variant="outlined" size="small"
                           onClick={() => handleCompletedTask(toDoItem.id)}
-                          >&#x2713;</Button> </>):
+                          >&#x2713;</Button> 
+                        <Button type="button" id="deleteButton" variant="outlined" size="small" startIcon={<DeleteIcon />}
+                        onClick={(event) => handleClickDelete(toDoItem.id)}>Delete</Button>
+                        </div>):
                         // Task NOT completed:
-                        (<> <li id="toDoItemTask" className="notCompleted">{toDoItem.task}</li>
+                        (<div id="taskNotCompletedDiv"> <li id="toDoItemTask" className="notCompleted">{toDoItem.task}</li>
                         {/* <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p> */}
                         <Button type="button" id="completed" variant="outlined" size="small"
                           onClick={() => handleCompletedTask(toDoItem.id)}
-                          >&#x2713;</Button> </>
-                          )}
-                        <Button type="button" id="deleteButton" variant="outlined" size="small" startIcon={<DeleteIcon />}
+                          >&#x2713;</Button> 
+                          <Button type="button" id="deleteButton" variant="outlined" size="small" startIcon={<DeleteIcon />}
                         onClick={(event) => handleClickDelete(toDoItem.id)}>Delete</Button>
+                          </div>
+                          )}
                 </ul>
             ))}
         </div>
