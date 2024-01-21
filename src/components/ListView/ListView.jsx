@@ -1,5 +1,8 @@
 import { deleteToDoItem, updateCompleteToDoItem } from '../../toDoApp/ToDoApp.api.js'
 import './ListView.module.css';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+
               // We need toDoList from App.jsx for our .map
 function ListView({toDoList, refreshToDoList}) {
   // Delete item function
@@ -37,20 +40,25 @@ function ListView({toDoList, refreshToDoList}) {
     return (
         <div>
             {toDoList.map((toDoItem, itemIndex) => (
-                <ul key={itemIndex}>
+                <ul key={itemIndex} id="toDoList">
                         {
                         toDoItem.completed ?(
                         <>
+                        {/* Task is completed */}
                         <li id="toDoItemTask" className="crossedThrough">{toDoItem.task}</li>
                         {/* <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p> */}
-                        <button type="button" id="completed" onClick={() => handleCompletedTask(toDoItem.id)}
-                          >&#x2713;</button> </>):(<> <li id="toDoItemTask" className="completed">{toDoItem.task}</li>
-                          {/* <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p> */}
-                          <button type="button" id="completed" onClick={() => handleCompletedTask(toDoItem.id)}
-                          >&#x2713;</button> </>
+                        <Button type="button" id="completed" variant="outlined" size="small"
+                          onClick={() => handleCompletedTask(toDoItem.id)}
+                          >&#x2713;</Button> </>):
+                        // Task NOT completed:
+                        (<> <li id="toDoItemTask" className="notCompleted">{toDoItem.task}</li>
+                        {/* <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p> */}
+                        <Button type="button" id="completed" variant="outlined" size="small"
+                          onClick={() => handleCompletedTask(toDoItem.id)}
+                          >&#x2713;</Button> </>
                           )}
-                        <button type="button" id="deleteButton" 
-                        onClick={(event) => handleClickDelete(toDoItem.id)}>X</button>
+                        <Button type="button" id="deleteButton" variant="outlined" size="small" startIcon={<DeleteIcon />}
+                        onClick={(event) => handleClickDelete(toDoItem.id)}>Delete</Button>
                 </ul>
             ))}
         </div>

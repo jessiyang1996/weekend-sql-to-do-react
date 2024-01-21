@@ -37,7 +37,7 @@ function Form(props) {
         // html markup can go into the parenthesis
         <div>
             <h1 className="App-header">TO DO APP</h1>
-            <form onSubmit={sendTaskToServer}>
+            <form id="form" onSubmit={sendTaskToServer}>
                 <div>
                 <label htmlFor="taskInput">Title: </label>
                 <input id="taskInput" type="text" value={toDoItemValue}
