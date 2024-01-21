@@ -36,18 +36,23 @@ function ListView({toDoList, refreshToDoList}) {
   
     return (
         <div>
-            {toDoList.map((toDoItem, itemIndex) => {
-                return (
+            {toDoList.map((toDoItem, itemIndex) => (
                 <ul key={itemIndex}>
-                        <li id="toDoItemTask">{toDoItem.task}</li>
-                        <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p>
+                        {
+                        toDoItem.completed ?(
+                        <>
+                        <li id="toDoItemTask" className="crossedThrough">{toDoItem.task}</li>
+                        {/* <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p> */}
                         <button type="button" id="completed" onClick={() => handleCompletedTask(toDoItem.id)}
-                          >&#x2713;</button>
+                          >&#x2713;</button> </>):(<> <li id="toDoItemTask" className="completed">{toDoItem.task}</li>
+                          {/* <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p> */}
+                          <button type="button" id="completed" onClick={() => handleCompletedTask(toDoItem.id)}
+                          >&#x2713;</button> </>
+                          )}
                         <button type="button" id="deleteButton" 
                         onClick={(event) => handleClickDelete(toDoItem.id)}>X</button>
                 </ul>
-                )
-            })}
+            ))}
         </div>
     )
 };
