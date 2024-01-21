@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 // require('')
 import Form from '../Form/Form.jsx';
-import axios from 'axios'; // import axios in order to use it!
 import { fetchToDoItems } from '../../toDoApp/ToDoApp.api.js';
 import ListView from '../listView/listView.jsx';
 

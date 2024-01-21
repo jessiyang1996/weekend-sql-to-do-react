@@ -3,20 +3,16 @@ import axios from 'axios'; // import axios
 export const fetchToDoItems = () => {
     // axios GET CALL
     return axios.get('/api/todo')
-        // .then((response) => {
-        //     console.log('SERVER DATA: ', response);
-        // })
-        // .catch((error) => {
-        //     console.log('ERROR IN AXIOS GET: ', error);
-        // });
 }; // end of axios GET call
 
-// PUT (UPDATE) Axios Call
-// export const markAsCompleted = () => {
-
-// }
+// AXIOS POST CALL IS IN THE FORM.JSX file!
 
 // Delete Axios Call
 export const deleteToDoItem = (toDoItemId) => {
     return axios.delete(`/api/todo/${toDoItemId}`);
 }; // End of axios DELETE Call
+
+// PUT (UPDATE) Call
+export const updateCompleteToDoItem = (toDoItemId) => {
+    return axios.put(`/api/todo/${toDoItemId}`)
+}; // End of axios PUT call

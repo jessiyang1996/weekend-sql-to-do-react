@@ -1,17 +1,17 @@
 -- Create the table with the column titles
 CREATE TABLE "to_do" (
 	"id" SERIAL PRIMARY KEY,
-	"task" varchar(200),
-	"completed" varchar(2)
+	"task" varchar(200) NOT NULL ,
+	"completed" BOOLEAN DEFAULT FALSE
 );
 
-INSERT INTO "to_do" ("task", "completed")
+INSERT INTO "to_do" ("task")
 VALUES 
-('Go to Office Hours', 'N'),
-('Apply to jobs', 'N'),
-('Learn about React!', 'N'),
-('Finish this homework assignment!','N'),
-('Go to Work', 'Y')
+('Go to Office Hours'),
+('Apply to jobs'),
+('Learn about React!'),
+('Finish this homework assignment!'),
+('Go to Work')
 ;
 
 
