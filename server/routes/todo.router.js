@@ -45,10 +45,10 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     console.log('IN PUT ROUTE');
     let queryText = `
-        UPDATE "to_do" SET "completed" = $1 WHERE "id" = $2;
+        UPDATE "to_do" SET "completed" = NOT "completed" WHERE "id" = $1;
     `;
     // Run SQL Query using PG
-    pool.query(queryText, [req.body.completed, req.body.id])
+    pool.query(queryText, [req.body.id])
         .then((result) => {
             // Send back data from our database upon success
             res.sendStatus(200); // close connection
