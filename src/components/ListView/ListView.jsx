@@ -1,8 +1,5 @@
-import { fetchToDoItems } from '../../toDoApp/ToDoApp.api.js'
-import { useEffect } from 'react';
-import { deleteToDoItem } from '../../toDoApp/ToDoApp.api.js'
-
-
+import { deleteToDoItem, updateCompleteToDoItem } from '../../toDoApp/ToDoApp.api.js'
+import './ListView.module.css';
               // We need toDoList from App.jsx for our .map
 function ListView({toDoList, refreshToDoList}) {
   // Delete item function
@@ -22,21 +19,35 @@ function ListView({toDoList, refreshToDoList}) {
       .catch((error) => {
         console.log("Error in AXIOS Delete: ", error)
       });
-  } // end if handleClickDelete()
+  } // end of handleClickDelete()
 
+  const handleCompletedTask = (toDoItemId) => {
+    console.log("IN handleCompletedTask()");
+    updateCompleteToDoItem(toDoItemId)
+      .then((response) => {
+        // Success!
+        refreshToDoList();
+      })
+      .catch((error) => {
+        // Not Successful
+        console.error("Error in AXIOS Put: ", error);
+      })
+  } // end of handleCompletedTask
+  
     return (
         <div>
             {toDoList.map((toDoItem, itemIndex) => {
                 return (
                 <ul key={itemIndex}>
                         <li id="toDoItemTask">{toDoItem.task}</li>
-                        <p>{toDoItem.completed}</p>
-                        <button type="button" id="completed">&#x2713;</button>
+                        <p>task completed? {toDoItem.completed ? 'TRUE' : 'FALSE'}</p>
+                        <button type="button" id="completed" onClick={() => handleCompletedTask(toDoItem.id)}
+                          >&#x2713;</button>
                         <button type="button" id="deleteButton" 
                         onClick={(event) => handleClickDelete(toDoItem.id)}>X</button>
                 </ul>
                 )
-            })};
+            })}
         </div>
     )
 };

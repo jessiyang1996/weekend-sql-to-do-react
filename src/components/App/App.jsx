@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import Form from '../Form/Form.jsx';
 import { fetchToDoItems } from '../../toDoApp/ToDoApp.api.js';
 import ListView from '../listView/listView.jsx';
+import './App.css';
 
 // a function represents a component!
 function App () {
