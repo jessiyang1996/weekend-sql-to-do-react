@@ -30,6 +30,7 @@ function ListView({toDoList, refreshToDoList}) {
                 return (
                 <ul key={itemIndex}>
                         <li id="toDoItemTask">{toDoItem.task}</li>
+                        <p>{toDoItem.completed}</p>
                         <button type="button" id="completed">&#x2713;</button>
                         <button type="button" id="deleteButton" 
                         onClick={(event) => handleClickDelete(toDoItem.id)}>X</button>

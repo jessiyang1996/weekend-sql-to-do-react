@@ -48,7 +48,7 @@ router.put('/:id', (req, res) => {
         UPDATE "to_do" SET "completed" = NOT "completed" WHERE "id" = $1;
     `;
     // Run SQL Query using PG
-    pool.query(queryText, [req.body.id])
+    pool.query(queryText, [req.params.id])
         .then((result) => {
             // Send back data from our database upon success
             res.sendStatus(200); // close connection
